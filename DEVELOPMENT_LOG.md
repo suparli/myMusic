@@ -35,7 +35,20 @@
     *   **Sidebar:** Added "User Profile" button.
     *   **Dialog:** Created a Profile Editing dialog where users can update their username and password.
 
-### 5. Technical Notes
+### 5. CasaOS & Docker Integration
+*   **Feature:** Added Docker support for easy deployment on CasaOS or any Docker-enabled NAS.
+*   **Files Added:**
+    *   `backend/Dockerfile`: Multi-stage build for NestJS.
+    *   `frontend/Dockerfile`: Build for React served via Nginx.
+    *   `docker-compose.yml`: Orchestration for both services.
+*   **CasaOS Setup:**
+    1.  Copy the code to your CasaOS server.
+    2.  Open **App Store** -> **Custom Install**.
+    3.  Import the `docker-compose.yml` file.
+    4.  Map the `/library` volume to your music folder on CasaOS (e.g., `/DATA/Media/Music`).
+    5.  Access via port `8080`.
+
+### 6. Technical Notes
 *   **Database:** SQLite is used. The `admin` user is created automatically on backend startup if the `user` table is empty.
 *   **Backend Build:** If new endpoints are added, remember to run `npm run build` in the `backend` folder before restarting the server to ensure `dist` files are updated.
 

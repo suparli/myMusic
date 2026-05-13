@@ -9,8 +9,11 @@ import * as mm from 'music-metadata';
 @Injectable()
 export class ScannerService {
   private readonly logger = new Logger(ScannerService.name);
-  // Resolve the library directory relative to the backend root (dist/scanner)
-  private readonly libraryDir = path.resolve(__dirname, '../../../library');
+  
+  // Use LIBRARY_PATH from env or fallback to default relative path
+  private readonly libraryDir = process.env.LIBRARY_PATH 
+    ? path.resolve(process.env.LIBRARY_PATH) 
+    : path.resolve(__dirname, '../../../library');
 
   constructor(
     @InjectRepository(Track)
