@@ -1,28 +1,15 @@
 services:
-  backend:
+  antimusic:
     build:
-      context: ./backend
+      context: .
       dockerfile: Dockerfile
-    container_name: antimusic-backend
+    container_name: antimusic
     ports:
-      - "3000:3000"
+      - "8080:3000"
     volumes:
       - ./database.sqlite:/app/database.sqlite
       - ./library:/library
     environment:
       - PORT=3000
       - LIBRARY_PATH=/library
-    restart: unless-stopped
-
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    container_name: antimusic-frontend
-    ports:
-      - "8080:80"
-    environment:
-      - VITE_API_URL=http://localhost:3000
-    depends_on:
-      - backend
     restart: unless-stopped

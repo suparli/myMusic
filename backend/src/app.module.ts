@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ServeStaticModule } from '@nestjs/serve-static';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TrackModule } from './track/track.module';
@@ -19,6 +20,10 @@ import * as path from 'path';
       synchronize: true, // Use carefully in production, OK for now
       logging: true,
       enableWAL: true,
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: path.resolve(__dirname, '../../client'),
+      exclude: ['/api*', '/users*', '/tracks*', '/playlists*', '/scanner*', '/audio*'],
     }),
     TrackModule,
     ScannerModule,
