@@ -1,0 +1,13 @@
+services:
+  antimusic:
+    image: antimusic:latest
+    container_name: antimusic
+    ports:
+      - "8080:3000"
+    volumes:
+      - ./database.sqlite:/app/database.sqlite
+      - ./library:/library
+    environment:
+      - PORT=3000
+      - LIBRARY_PATH=/library
+    restart: unless-stopped
