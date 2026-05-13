@@ -3,6 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    image: antimusic:latest
     container_name: antimusic
     ports:
       - "8080:3000"
