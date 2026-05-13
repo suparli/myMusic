@@ -1,5 +1,5 @@
 # Stage 1: Build Frontend
-FROM node:18-alpine as frontend-build
+FROM node:22-alpine as frontend-build
 WORKDIR /app/frontend
 COPY frontend/package*.json ./
 RUN npm install
@@ -9,7 +9,7 @@ ENV VITE_API_URL=/
 RUN npm run build
 
 # Stage 2: Build Backend
-FROM node:18-alpine as backend-build
+FROM node:22-alpine as backend-build
 RUN apk add --no-cache python3 make g++
 WORKDIR /app/backend
 COPY backend/package*.json ./
@@ -18,7 +18,7 @@ COPY backend/ .
 RUN npm run build
 
 # Stage 3: Final Production Image
-FROM node:18-alpine
+FROM node:22-alpine
 RUN apk add --no-cache python3 make g++
 WORKDIR /app
 
