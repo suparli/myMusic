@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { Play, Pause, SkipBack, SkipForward, Volume2, VolumeX, Music2, Shuffle, Repeat, Repeat1 } from 'lucide-react';
 import { useAudioStore, type Track } from '../store/useAudioStore';
 import { useUserStore } from '../store/useUserStore';
@@ -15,7 +15,6 @@ function formatTime(seconds: number | undefined) {
 export function PlayerBar() {
   const { currentTrack, isPlaying, progress, volume, togglePlay, setVolume, seek, updateProgress, nextTrack, prevTrack, activePlaylist, setTracks, isShuffle, repeatMode, toggleShuffle, toggleRepeatMode } = useAudioStore();
   const currentUser = useUserStore((state) => state.currentUser);
-  const debounceTimeout = useRef<NodeJS.Timeout | null>(null);
 
   const updatePlaybackMutation = useMutation({
     mutationFn: async (data: { trackId: string; position: number }) => {
@@ -40,7 +39,7 @@ export function PlayerBar() {
       });
     }
 
-    let interval: NodeJS.Timeout | null = null;
+    let interval: ReturnType<typeof setInterval> | null = null;
     if (isPlaying) {
       interval = setInterval(() => {
         updatePlaybackMutation.mutate({

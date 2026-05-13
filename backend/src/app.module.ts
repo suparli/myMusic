@@ -18,7 +18,7 @@ import * as path from 'path';
       database: path.resolve(__dirname, '../../database.sqlite'),
       entities: [Track, User],
       synchronize: true, // Use carefully in production, OK for now
-      logging: true,
+      logging: false,
       enableWAL: true,
     }),
     ServeStaticModule.forRoot({

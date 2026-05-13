@@ -4,7 +4,7 @@ import { PlayerBar } from './components/PlayerBar';
 import { TrackList } from './components/TrackList';
 import { useAudioStore, type Track } from './store/useAudioStore'; // Import Track type
 import { Loader2, UploadCloud } from 'lucide-react';
-import { useState, useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import { Button } from './components/ui/button';
 import { ThemeProvider } from './components/theme-provider';
 import { MobileNav } from './components/mobile-nav';

@@ -3,12 +3,11 @@ import { useMutation } from '@tanstack/react-query';
 import { useUserStore } from '../store/useUserStore';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
+import { Tabs, TabsList, TabsTrigger } from './ui/tabs';
 import { Loader2, Music } from 'lucide-react';
 import { Label } from './ui/label';
 
-async function authRequest(endpoint: 'login' | 'register', { username, password }) {
+async function authRequest(endpoint: 'login' | 'register', { username, password }: any) {
   const res = await fetch(`http://localhost:3000/users/${endpoint}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
